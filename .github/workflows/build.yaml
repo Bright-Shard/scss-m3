@@ -13,6 +13,8 @@ jobs:
         uses: Homebrew/actions/setup-homebrew@master
       - name: Install SASS commandline utility
         run: brew install sass/sass/sass
+      - name: Checkout Repo
+        uses: actions/checkout@v3
       - name: Compile Compressed SASS
         run: sass main.scss -s compressed -I . > compressed.css
       - name: Compile Expanded SASS
