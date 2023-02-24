@@ -1,0 +1,62 @@
+// Screens > 840px
+@use "material/theme.scss" as *;
+
+// Screen layout (a separate mixin so medium screens can reuse it)
+@mixin large_layout() {
+    // Screen layout: A 2x2 grid
+    body {
+        display: grid;
+        grid-template-columns: 80px 1fr;
+        grid-template-rows: 100px 1fr;
+        gap: var(--margin);
+    }
+    // Navigation rail is in the first column, spanning both rows
+    #navigation {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+        height: 100%;
+    }
+    // The titlebar is in the second column and first row
+    #titlebar {
+        grid-column: 2;
+        grid-row: 1;
+        height: 100px;
+        width: 100%;
+
+        padding: 0px;
+        padding-right: var(--margin);
+    }
+    // The content is in the second column and second row
+    #content {
+        grid-column: 2;
+        grid-row: 2;
+        height: 1fr;
+        width: 1fr;
+
+        padding: 0px;
+        padding-right: var(--margin);
+        padding-bottom: var(--margin);
+    }
+}
+
+@mixin large_screen() {
+    // Edit dynamic variables
+    :root {
+        // Margin is 32px on large screens
+        --margin: 32px !important;
+        // Show 3 columns in a gallery
+        --columns: 3 !important;
+        // Adjust font sizes
+        --titlebar-title-size: #{$display-medium};
+        --titlebar-subtitle-size: #{$headline-small};
+        --header-1-size: #{$display-small};
+        --header-1-weight: #{$display-font};
+        --header-2-size: #{$headline-large};
+        --header-2-weight: #{$headline-font};
+        --body-size: #{$body-large};
+        --body-weight: #{$body-font};
+    }
+
+    // Screen layout
+    @include large_layout();
+}

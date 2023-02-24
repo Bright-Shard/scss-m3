@@ -1,0 +1,13 @@
+@use "material/theme" as *;
+
+.divider {
+    --margin: 28px;
+    
+    height: 0px;
+    width: calc(var(--width) - calc(var(--margin) * 2));
+    margin: var(--margin);
+    border-style: solid;
+    border-width: 0px;
+    border-top-width: 1px;
+    color: $outline-variant;
+}

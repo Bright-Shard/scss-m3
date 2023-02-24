@@ -1,0 +1,24 @@
+@use "material/theme" as *;
+
+@use "icon.scss";
+
+// Moved to mixin so my custom "navigation" class can use it too
+@mixin navigation_bar() {
+    // Icon-based nav
+    @include icon.icon_navigation(64px);
+
+    // Orientation settings
+    flex-direction: row;
+    justify-content: space-around;
+    column-gap: 8px;
+    width: 100%;
+    height: 80px;
+    padding-top: 12px;
+    padding-bottom: 16px;
+    bottom: 0px;
+}
+
+// Navigation bar
+.navigation-bar {
+    @include navigation_bar();
+}

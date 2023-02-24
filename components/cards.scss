@@ -1,0 +1,106 @@
+@use "material/theme" as *;
+
+// Common styles - only the colours/borders really changes between all 3
+.card-elevated, .card-filled, .card-outlined {
+    // Round corners
+    @include round(12px);
+
+    // Display stuffs
+    padding: 16px;
+    height: 100%;
+    z-index: 0;
+
+    // Text fixes
+    text-decoration: none;
+    color: inherit;
+
+    // Flexbox, to space elements
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+
+    // Default content styles
+    // Large images/banners
+    & > .banner {
+        width: calc(100% + 32px);
+        min-height: 0%;
+        object-fit: cover;
+        object-position: top left;
+
+        position: relative;
+        margin: -16px;
+        margin-bottom: 0px;
+
+        @include round(12px);
+    }
+    // Headline
+    & > h1 {
+        font-weight: var(--header-1-weight);
+        font-size: var(--header-2-size);
+        margin: 0px;
+    }
+    // Subhead
+    & > h2 {
+        font-weight: $title-font;
+        font-size: $title-medium;
+        margin: 0px;
+    }
+    // Text
+    & > p {
+        font-weight: $body-font;
+        font-size: $body-medium;
+        line-height: 1.5;
+        margin: 0px;
+    }
+    // Action row
+    & > .actions {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        column-gap: 8px;
+        margin-top: 10px;
+    }
+}
+
+// Elevated card
+.card-elevated {
+    background-color: $surface-1;
+    box-shadow: $shadow;
+
+    // State layer
+    @include state_layer($on-surface, 12px);
+
+    // Disabled state
+    @include disabled_state();
+    // Hover state
+    @include hovered_state($state-hovered, $shadow-1);
+
+}
+
+// Filled card
+.card-filled {
+    background-color: $surface-1;
+
+    // State layer
+    @include state_layer($on-surface, 12px);
+
+    // Disabled state
+    @include disabled_state();
+    
+    // Hover state
+    @include hovered_state();
+    &:not([disabled]):hover {
+        box-shadow: $shadow;
+    }
+}
+
+// Outlined card
+.card-outlined {
+    background-color: $surface;
+    
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 12px;
+    border-color: $outline;
+}

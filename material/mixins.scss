@@ -1,0 +1,164 @@
+@use "variables" as *;
+
+// ========== MIXINS & FUNCTIONS ==========
+// Round corners without showing the border
+@mixin round($radius) {
+    border: 0px solid;
+    border-radius: $radius;
+}
+// Convert hex codes into an RGB value
+@function hex2rgb($colour) {
+    @return rgb(red($colour), green($colour), blue($colour));
+}
+// Build a state layer for an element
+@mixin state_layer($colour, $radius, $override-position: true) {
+    z-index: 0;
+    
+    @if $override-position {
+        position: relative;
+    }
+
+    &::after {
+        content: "";
+        display: block;
+        position: absolute;
+    
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    
+        opacity: 0;
+        transition-duration: .4s;
+        background-color: $colour;
+        z-index: -1;
+
+        @include round($radius);
+    }
+}
+// Disabled state for components
+@mixin disabled_state($fg-opacity: $state-disabled-fg, $bg-opacity: $state-disabled-bg, $colour: $on-surface) {
+    &[disabled] {
+        // Background colour is 12% opacity, while foreground is 38%
+        // Need to use rgba to set differing opacities
+        // Get RGB from on-surface
+        $colour: hex2rgb($on-surface);
+
+        // Background colour, w/ opacity
+        background-color: rgba($colour, $bg-opacity);
+        // Foreground colour, w/ opacity
+        color: rgba($colour, $fg-opacity);
+        // Remove the shadow, for elements that have it
+        box-shadow: none;
+    }
+}
+// Hovered state for components
+@mixin hovered_state($opacity: $state-hovered, $hover-shadow: false, $target: false) {
+    &:not([disabled]):hover{
+        @if $hover-shadow != false {
+            box-shadow: $hover-shadow;
+        }
+
+        @if $target != false {
+            .#{$target}::after {
+                opacity: $opacity;
+            }
+        } @else {
+            &::after {
+                opacity: $opacity;
+            }
+        }
+    }
+}
+// Focused state for components
+@mixin focused_state($opacity: $state-focused, $target: false) {
+    &:not([disabled]):focus {
+        @if $target != false {
+            .#{$target}::after {
+                opacity: $opacity;
+            }
+        } @else {
+            &::after {
+                opacity: $opacity;
+            }
+        }
+    }
+}
+// Pressed state for components
+@mixin pressed_state($opacity: $state-pressed, $target: false) {
+
+    &:not([disabled]):active {
+        @if $target != false {
+            .#{$target}::after {
+                opacity: $opacity;
+            }
+        } @else {
+            &::after {
+                opacity: $opacity;
+            }
+        }
+    }
+}
+// Fancy pressed state animation
+@keyframes pressed {
+    from {
+        width: 0px;
+        left: 50%;
+    }
+    to {
+        width: 100%;
+        left: 0px;
+    }
+}
+// Same as above, but two-dimensional
+@keyframes pressed-bidirectional {
+    from {
+        width: 0px;
+        height: 0px;
+        left: 50%;
+        top: 50%;
+    }
+    to {
+        width: 100%;
+        height: 100%;
+        left: 0px;
+        top: 0px;
+    }
+}
+// Mixin to play the fancy pressed state animation
+@mixin fancy_pressed_state($bidirectional: false) {
+    &:not([disabled]):active::after {
+        opacity: $state-pressed;
+
+        animation-duration: .6s;
+        animation-fill-mode: forwards;
+
+        @if $bidirectional {
+            animation-name: pressed-bidirectional;
+        } @else {
+            animation-name: pressed;
+        }
+    }
+}
+
+// Screen size mixins
+@mixin small_screen {
+    @media (max-width: 599px) {
+        @content
+    }
+}
+@mixin medium_screen {
+    @media (min-width: 600px) and (max-width: 839px) {
+        @content
+    }
+}
+@mixin large_screen {
+    @media (min-width: 840px) {
+        @content
+    }
+}
+@mixin not_small_screen {
+    @media (min-width: 600px) {
+        @content
+    }
+}

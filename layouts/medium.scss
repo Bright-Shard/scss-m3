@@ -1,0 +1,26 @@
+// Screens between 600px and 839px
+@use "material/theme.scss" as *;
+
+@use "large.scss";
+
+@mixin medium_screen() {
+    // Edit dynamic variables
+    :root {
+        // Margin is 12px on large screens
+        --margin: 12px !important;
+        // Show 2 columns in a gallery
+        --columns: 2 !important;
+        // Adjust font sizes
+        --titlebar-title-size: #{$display-medium};
+        --titlebar-subtitle-size: #{$headline-small};
+        --header-1-size: #{$display-small};
+        --header-1-weight: #{$display-font};
+        --header-2-size: #{$headline-large};
+        --header-2-weight: #{$headline-font};
+        --body-size: #{$body-medium};
+        --body-weight: #{$body-font};
+    }
+
+    // Screen layout
+    @include large.large_layout();
+}

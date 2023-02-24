@@ -1,0 +1,153 @@
+@use "material/theme" as *;
+
+// ========== COMMON (ENABLED STATE) STYLES ==========
+.button-elevated, .button-filled, .button-tonal, .button-outlined, .button-text {
+    // Flexbox for text & icon
+    display: flex;
+    flex-direction: row;
+    column-gap: 8px;
+    align-items: center;
+    justify-content: flex-start;
+
+    // Basic button shape
+    height: 40px;
+    width: fit-content;
+    padding: 0px 24px;
+    z-index: 0;
+    @include round(20px);
+
+    // Button text
+    font-weight: $label-font;
+    font-size: $label-large;
+    text-decoration: none;
+
+    // Button icon
+    > .icon {
+        margin-left: -8px;
+        font-size: 18px;
+    }
+}
+
+
+
+// ========== ELEVATED BUTTON ==========
+.button-elevated {
+    // Enabled state
+    background-color: $surface-1;
+    box-shadow: $shadow;
+    color: $primary;
+    @include state_layer($primary, 20px);
+
+    // Disabled state
+    @include disabled_state();
+
+    // Hover state
+    @include hovered_state();
+
+    // Hover state is special for this one
+    &:not([disabled]):hover {
+        background-color: $surface-2;
+    }
+
+    // Focus state
+    @include focused_state();
+
+    // Pressed state
+    @include pressed_state();
+}
+
+
+
+// ========== FILLED BUTTON ==========
+.button-filled {
+    // Enabled state
+    background-color: $primary;
+    color: $on-primary;
+    @include state_layer($on-primary, 20px);
+
+    // Disabled state
+    @include disabled_state();
+
+    // Hover state
+    @include hovered_state();
+
+    // Focus state
+    @include focused_state();
+
+    // Pressed state
+    @include pressed_state($state-hovered);
+}
+
+
+
+// ========== TONAL BUTTON ==========
+.button-tonal {
+    // Enabled state
+    background-color: $secondary-container;
+    color: $on-secondary-container;
+    transition-duration: .4s;
+    @include state_layer($on-secondary-container, 20px);
+
+    // Disabled state
+    @include disabled_state();
+
+    // Hover state
+    @include hovered_state();
+
+    // Hover state is special for tonal
+    &:not([disabled]):hover {
+        box-shadow: $shadow;
+    }
+
+    // Focus state
+    @include focused_state();
+
+    // Pressed state
+    @include pressed_state($state-hovered);
+}
+
+
+
+// ========== OUTLINED BUTTON ==========
+.button-outlined {
+    // Enabled state
+    border-style: solid;
+    border-width: 1px;
+    border-color: $outline;
+    border-radius: 20px;
+    color: $primary;
+    @include state_layer($primary, 20px);
+
+    // Disabled state
+    @include disabled_state($state-disabled-fg, 0);
+
+    // Hover state
+    @include hovered_state();
+
+    // Focus state
+    @include focused_state();
+
+    // Pressed state
+    @include pressed_state();
+}
+
+
+
+// ========== TEXT BUTTON ==========
+.button-text {
+    // Enabled state
+    color: $primary;
+    @include state_layer($primary, 20px);
+
+    // Disabled state
+    @include disabled_state($state-disabled-fg, 0);
+
+    // Hover state
+    @include hovered_state();
+
+    // Focus state
+    @include focused_state();
+
+    // Pressed state
+    @include pressed_state();
+}

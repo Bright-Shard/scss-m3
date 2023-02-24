@@ -1,0 +1,56 @@
+@use "material/theme" as *;
+
+// Floating Action Button (FAB)
+.fab, .fab-large {
+    background-color: $primary-container;
+    color: $on-primary-container;
+    text-decoration: none;
+    box-shadow: $shadow;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 0;
+    position: fixed;
+
+    @include not_small_screen {
+        bottom: 16px;
+        right: 16px;
+    }
+    @include small_screen {
+        bottom: 96px;
+        right: 16px;
+    }
+
+    > .icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    @include round(16px);
+
+    // State layer
+    @include state_layer($on-primary-container, 16px, false);
+
+    // Hovered state
+    @include hovered_state($state-hovered, $shadow-1);
+
+    // Focused state
+    @include focused_state();
+
+    // Fancy pressed state, and animate bidirectionally
+    @include fancy_pressed_state(true);
+}
+
+.fab {
+    width: 56px;
+    height: 56px;
+    font-size: 24px;
+}
+
+.fab-large {
+    width: 96px;
+    height: 96px;
+    font-size: 36px;
+}

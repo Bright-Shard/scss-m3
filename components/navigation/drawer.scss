@@ -1,0 +1,107 @@
+@use "material/theme" as *;
+
+// Standard navigation drawer styles
+.navigation-drawer, .navigation-drawer-modal {
+    --width: 360px;
+    --item-gap: 16px;
+    --item-height: 56px;
+    --margin: 12px;
+
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--item-gap);
+    width: var(--width);
+    height: 100%;
+    padding-top: var(--margin);
+
+    // Nav drawer labels
+    > h1 {
+        color: $on-surface-variant;
+        font-weight: $title-font;
+        font-size: $title-small;
+        margin: 0px var(--margin);
+        margin-bottom: var(--item-gap);
+    }
+    // Nav drawer dividers
+    > .divider {
+        --margin: inherit;
+    }
+
+    // Each nav drawer item/link
+    > a {
+        // Enabled state
+        height: var(--item-height);
+        width: calc(var(--width) - calc(var(--margin) * 2));
+        padding-left: 16px;
+        padding-right: 24px;
+        margin: 0px var(--margin);
+
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
+        column-gap: var(--margin);
+
+        color: $on-surface-variant;
+        font-weight: $label-font;
+        font-size: $label-large;
+        text-decoration: none;
+
+        > .icon {
+            font-size: 24px;
+        }
+
+        // State layer
+        @include state_layer($on-surface, 28px);
+        // Hovered state
+        @include hovered_state();
+        // Text colour changes on hover as well, for some reason
+        &:hover {
+            color: $on-surface;
+        }
+        // Focused state
+        @include focused_state();
+        // Text colour changes on focus as well, for some reason
+        &:focus {
+            color: $on-surface;
+        }
+        // Pressed state
+        @include fancy_pressed_state();
+        &:active {
+            color: $on-surface;
+            &::after {
+                background-color: $on-secondary-container;
+            }
+        }
+    }
+
+
+
+    // Active page is a lil funky
+    > #active-page {
+        color: $on-secondary-container !important;
+        background-color: $secondary-container !important;
+        @include round(28px);
+
+        // State layer
+        &::after {
+            background-color: $on-secondary-container !important;
+        }
+    }
+}
+
+// Colour and border for the standard nav drawer
+//  is different from the modal drawer
+.navigation-drawer {
+    background-color: $surface;
+}
+.navigation-drawer-modal {
+    background-color: $surface-2;
+
+    border-style: solid;
+    border-width: 0px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}

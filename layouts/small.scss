@@ -1,0 +1,56 @@
+// Screens < 599px
+@use "material/theme.scss" as *;
+
+@mixin small_screen() {
+    // Edit dynamic variables
+    :root {
+        // Margin is 8px on large screens
+        --margin: 8px !important;
+        // Show 1 column in a gallery
+        --columns: 1 !important;
+        // Adjust font sizes
+        --titlebar-title-size: #{$display-small};
+        --titlebar-subtitle-size: #{$title-large};
+        --header-1-size: #{$headline-large};
+        --header-1-weight: #{$headline-font};
+        --header-2-size: #{$headline-medium};
+        --header-2-weight: #{$headline-font};
+        --body-size: #{$body-medium};
+        --body-weight: #{$body-font};
+    }
+
+    // Screen layout: A 3x1 grid
+    $titlebar-height: 110px;
+    $content-height: auto;
+    $navbar-height: 80px;
+    body {
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: $titlebar-height $content-height $navbar-height;
+        gap: var(--margin);
+    }
+    // The titlebar is in the first row
+    #titlebar {
+        grid-column: 1;
+        grid-row: 1;
+        height: $titlebar-height;
+        width: 100%;
+
+        padding: 0px var(--margin);
+    }
+    // The content is in the second row
+    #content {
+        grid-column: 1;
+        grid-row: 2;
+        height: $content-height;
+        width: 100%;
+
+        padding: 0px var(--margin);
+        padding-bottom: calc(80px + var(--margin));
+    }
+    // Navigation bar is in the third row
+    #navigation {
+        grid-column: 1;
+        grid-row: 3;
+    }
+}

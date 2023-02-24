@@ -1,0 +1,56 @@
+@use "material/theme" as *;
+
+// Basic styling for the title, subtitle, and social icons
+
+@include not_small_screen {
+    #social-links {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    #social-link-dropdown {
+        display: none;
+    }
+
+    #social-link-dropdown-contents {
+        display: none;
+    }
+}
+
+@include small_screen {
+    #social-links {
+        display: none;
+    }
+
+    #social-link-dropdown-contents {
+        display: none;
+    }
+
+    #social-link-dropdown:focus+#social-link-dropdown-contents,
+    #social-link-dropdown-contents:hover {
+        display: flex;
+        flex-direction: column;
+        row-gap: 5px;
+        z-index: 5;
+        position: absolute;
+        top: 80px;
+        right: var(--margin);
+        background-color: $surface-2;
+        box-shadow: $shadow;
+        padding: 10px;
+        @include round(16px);
+
+        >a {
+            color: $on-surface;
+            font-size: $body-large;
+            font-weight: $body-font;
+            padding: 15px;
+            @include state_layer($on-surface, 16px);
+            @include hovered_state();
+            @include focused_state();
+            @include pressed_state();
+        }
+    }
+}

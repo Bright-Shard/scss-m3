@@ -1,0 +1,85 @@
+@use "material/theme" as *;
+
+@use "icon.scss";
+
+// Moved to mixin so my custom "navigation" class can use it too
+@mixin navigation_rail() {
+    // Icon-based nav
+    @include icon.icon_navigation(56px);
+
+    // Orientation settings
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    height: 100%;
+    width: 80px;
+    gap: 12px;
+    padding-top: 12px;
+
+    // Hamburger menu
+    > .hamburger {
+        margin-bottom: 16px;
+    }
+    // FAB
+    > .fab {
+        margin-bottom: 70px;
+    }
+
+    // Before item to mask subpages (it's complicated)
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        display: block;
+        background-color: $surface-2;
+        height: 100%;
+        width: 80px;
+        z-index: -1;
+    }
+
+    > a{
+        // Set width to 80px to prevent animation bugs
+        width: 80px;
+
+        // On hover, expand subpages, if they exist
+        &:hover + .subpages {
+            left: 80px;
+        }
+    }
+}
+
+// Navigation rail
+.navigation-rail {
+    @include navigation_rail();
+}
+
+// The subpages for a navigation rail item
+.subpages {
+    --width: 200px !important;
+    --item-gap: 5px !important;
+    --item-height: 45px !important;
+
+    z-index: -2;
+    position: absolute;
+    top: 0;
+    left: calc(var(--width) * -1);
+
+    transition-duration: .4s;
+
+    border-style: solid !important;
+    border-width: 0px !important;
+    border-left-width: 1px !important;
+    border-color: $outline-variant !important;
+
+    // When they're hovered over, keep them expanded
+    &:hover {
+        left: 80px;
+    }
+}
+
+// Colour active subpage
+#active-subpage {
+    color: $on-secondary-container !important;
+    background-color: $secondary-container !important;
+    @include round(28px);
+}

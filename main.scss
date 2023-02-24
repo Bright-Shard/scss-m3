@@ -1,0 +1,77 @@
+// MATERIAL 3 STYLE IMPORTS
+// Material 3 theme variables
+@use "material/theme" as *;
+// Navigation components
+@use "components/navigation/bar.scss";
+@use "components/navigation/rail.scss";
+@use "components/navigation/drawer.scss";
+// Button components
+@use "components/buttons/common.scss";
+@use "components/buttons/fab.scss";
+@use "components/buttons/icon.scss";
+// Custom components
+@use "custom/titlebar.scss";
+@use "custom/content.scss";
+@use "custom/gallery.scss";
+@use "custom/responsive_navigation.scss";
+// Other, smaller components
+@use "components/divider.scss";
+@use "components/cards.scss";
+// Layouts for different screen sizes
+@use "layouts/all.scss" as layouts;
+
+
+// UNIVERSAL STYLES
+// Ensure elements size correctly, and have the Roboto font (or a web-safe font)
+* {
+    box-sizing: border-box;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
+}
+
+// Fancy links
+a {
+    text-decoration: underline;
+    color: $primary;
+}
+
+// Increase line height for better readability
+p {
+    line-height: 1.5;
+}
+
+// Make sure SVG icons don't clip out of their space
+.icon>svg {
+    width: 24px;
+    height: 24px;
+}
+
+// Colour bg and make sure the body uses all available space
+body {
+    background-color: $surface;
+    margin: 0px;
+    padding: 0px;
+
+    position: absolute;
+    z-index: -2;
+
+    height: 100%;
+    width: 100%;
+}
+
+
+
+// LAYOUTS
+// Small screens
+@media (max-width: 599px) {
+    @include layouts.small_screen();
+}
+
+// Medium screens
+@media (min-width: 600px) and (max-width: 839px) {
+    @include layouts.medium_screen();
+}
+
+// Large screens
+@media (min-width: 840px) {
+    @include layouts.large_screen();
+}

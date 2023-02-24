@@ -1,0 +1,91 @@
+// ========== MATERIAL 3 VARIABLES ==========
+// Surface colours
+$surface: #1c1b1f;
+$surface-1: #25232a;
+$surface-2: #2a2831;
+$surface-3: #302d38;
+$surface-4: #322e3a;
+$surface-5: #35323e;
+
+$on-surface: #e6e1e5;
+
+
+
+// Variant colours
+$surface-variant: #49454f;
+$on-surface-variant: #cac4d0;
+$outline: #938f99;
+$outline-variant: #49454f;
+
+
+
+// Themed colours
+$primary: #d0bcff;
+$on-primary: #381e72;
+$primary-container: #4f378b;
+$on-primary-container: #eaddff;
+
+$secondary: #ccc2dc;
+$on-secondary: #332d41;
+$secondary-container: #4a4458;
+$on-secondary-container: #e8def8;
+
+$tertiary: #efb8c8;
+$on-tertiary: #492532;
+$tertiary-container: #633b48;
+$on-tertiary-container: #ffd8e4;
+
+$error: #f2b8b5;
+$on-error: #601410;
+$error-container: #8c1d18;
+$on-error-container: #f9dedc;
+
+
+
+// State layer opacities
+$state-disabled-bg: 12%;
+$state-disabled-fg: 38%;
+$state-hovered: 8%;
+$state-focused: 12%;
+$state-pressed: 12%;
+$state-dragged: 16%;
+
+
+
+// Font sizes
+$display-large: 57px;
+$display-medium: 45px;
+$display-small: 36px;
+
+$headline-large: 32px;
+$headline-medium: 28px;
+$headline-small: 24px;
+
+$title-large: 22px;
+$title-medium: 16px;
+$title-small: 14px;
+
+$label-large: 14px;
+$label-medium: 12px;
+$label-small: 11px;
+
+$body-large: 16px;
+$body-medium: 14px;
+$body-small: 12px;
+
+$icon-size: 24px;
+
+
+
+// Font weights (it's all Roboto)
+$display-font: 475;
+$headline-font: 400;
+$title-font: 500;
+$label-font: 500;
+$body-font: 400;
+
+
+
+// Shadow colours & sizes for elevation
+$shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.3);
+$shadow-1: 0px 4px 4px 2px rgba(0, 0, 0, 0.3);

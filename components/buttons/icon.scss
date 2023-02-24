@@ -1,0 +1,57 @@
+@use "material/theme" as *;
+
+// ========== STANDARD ICON BUTTON ==========
+.button-icon {
+    // Enabled state
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    color: $on-surface-variant !important;
+
+    // Icon
+    > .icon {
+        font-size: $icon-size;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        // State layer
+        @include state_layer($on-surface-variant, 30px);
+    }
+
+    // Tooltip
+    > p {
+        white-space: nowrap;
+        font-weight: $label-font;
+        font-size: $label-small;
+        color: $on-surface;
+        background-color: $surface-5;
+
+        opacity: 0;
+        transition-duration: .6s;
+
+        position: absolute;
+        margin-top: 75px;
+        padding: 1px 3px;
+        @include round(5px);
+    }
+
+    // Disabled state
+    @include disabled_state();
+    // Hovered state
+    @include hovered_state($state-hovered, false, icon);
+    // Tooltip hover state
+    &:hover > p {
+        opacity: 1;
+        padding: 1px 7px;
+    }
+    // Focused state
+    @include focused_state($state-focused, icon);
+    // Pressed state
+    @include pressed_state($state-pressed, icon);
+}

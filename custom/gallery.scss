@@ -1,0 +1,25 @@
+@use "material/theme" as *;
+
+.gallery-flex {
+    // Space taken up by padding between columns
+    --padding-space: calc(8px * calc(var(--columns) - 1));
+    // Max width the gallery can take up
+    --max-width: calc(100% - var(--padding-space) - var(--margin));
+    // How big each column should be
+    --column-size: calc(var(--max-width) / var(--columns));
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 8px;
+
+    > * {
+        max-width: var(--column-size);
+
+        @include small_screen {
+            width: var(--column-size);
+        }
+    }
+}

@@ -1,0 +1,68 @@
+@use "material/theme" as *;
+
+// Mixin for all icon-based navigation components
+// (In this case, the nav rail and nav bar)
+@mixin icon_navigation($icon-width) {
+    display: flex;
+    position: fixed;
+    background-color: $surface-2;
+
+    // Each navigation link
+    > a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+
+        text-decoration: none;
+
+        // The labels for nav items in the navigation rail
+        > p {
+            color: $on-surface-variant;
+            font-weight: $label-font;
+            font-size: $label-medium;
+            margin: 0px;
+        }
+        // The icons for nav items in the navigation rail
+        > .icon {
+            padding: 4px;
+            font-size: 24px;
+            color: $on-surface-variant;
+            width: $icon-width;
+            height: 32px;
+
+            @include state_layer($on-surface-variant, 16px);
+        }
+
+        // Hover state
+        @include hovered_state($state-hovered, false, icon);
+        // Focused state
+        &:focus > .icon::after {
+            opacity: $state-focused;
+        }
+        // Pressed state
+        &:active > .icon::after {
+            animation-name: pressed;
+            animation-duration: .4s;
+            animation-fill-mode: forwards;
+        }
+    }
+
+    // The active page gets fancy stylings
+    > #active-page {
+        > p {
+            color: $on-surface !important;
+        }
+        > .icon {
+            color: $on-secondary-container !important;
+            background-color: $secondary-container !important;
+            @include round(16px);
+
+            // State layer
+            &::after {
+                background-color: $on-surface !important;
+            }
+        }
+    }
+}

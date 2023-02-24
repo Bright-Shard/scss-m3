@@ -1,0 +1,26 @@
+name: Build SCSS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  compile-scss:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install SASS commandline utility
+        run: brew install sass/sass/sass
+      - name: Compile Compressed SASS
+        run: sass main.scss -s compressed -I . > compressed.css
+      - name: Compile Expanded SASS
+        run: sass main.scss -I . > expanded.css
+  publish-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with: 
+          files: |
+            compressed.css
+            expanded.css
