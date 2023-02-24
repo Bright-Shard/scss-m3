@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup Homebrew
-        run: eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        uses: Homebrew/actions/setup-homebrew@master
       - name: Install SASS commandline utility
         run: brew install sass/sass/sass
       - name: Compile Compressed SASS
