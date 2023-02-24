@@ -9,6 +9,8 @@ jobs:
   compile-scss:
     runs-on: ubuntu-latest
     steps:
+      - name: Setup Homebrew
+        run: eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
       - name: Install SASS commandline utility
         run: brew install sass/sass/sass
       - name: Compile Compressed SASS
@@ -17,6 +19,7 @@ jobs:
         run: sass main.scss -I . > expanded.css
   publish-release:
     runs-on: ubuntu-latest
+    needs: compile-scss
     steps:
       - name: Create Release
         uses: softprops/action-gh-release@v1
