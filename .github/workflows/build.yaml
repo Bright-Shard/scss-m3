@@ -11,7 +11,7 @@ on:
       v*.*
 
 jobs:
-  compile-scss:
+  make-release:
     runs-on: ubuntu-latest
     steps:
       - name: Setup Homebrew
@@ -24,10 +24,6 @@ jobs:
         run: sass main.scss -s compressed -I . > compressed.css
       - name: Compile Expanded SASS
         run: sass main.scss -I . > expanded.css
-  publish-release:
-    runs-on: ubuntu-latest
-    needs: compile-scss
-    steps:
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with: 
