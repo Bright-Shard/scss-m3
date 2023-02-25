@@ -4,7 +4,7 @@ An implementation of (most) Material 3 components - written purely in SCSS.
 
 # Usage
 
-Compile the SCSS in this repo, or grab the precompiled latest release [here](/releases). Then, simply link to it in your HTML file, and give elements the classes they need.
+Compile the SCSS in this repo, or grab the precompiled latest release [here](https://github.com/Bright-Shard/scss-m3/releases/latest). Then, simply link to it in your HTML file, and give elements the classes they need.
 
 Generally speaking, the classes are `[component type]-[variant]` - for example, the class `button-elevated` results in an elevated button. Components that don't have variants, such as the divider, are simply called `[component type]` (eg `divider`). Actual documentation coming soon™.
 
